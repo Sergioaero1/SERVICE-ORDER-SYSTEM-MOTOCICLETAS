@@ -1,0 +1,12 @@
+# Dependências
+node_modules/
+dist/
+
+# 🛡️ ARQUIVOS SENSÍVEIS (NÃO SUBIR!)
+.env
+src/config/chavePrivada.json
+
+# Logs e Cache
+*.log
+npm-debug.log*
+.eslintcache
