@@ -5,27 +5,41 @@ import db from "../config/db";
 export async function criarOS(req: Request, res: Response) {
   try {
     const { cliente_nome, veiculo_placa, problema, status, tecnico_id: tecnicoFromBody } = req.body;
+    
+    // Pega o ID do técnico do token ou do corpo da requisição
     const tecnico_id = (req as any).user?.uid || tecnicoFromBody;
 
+    // Validação básica
     if (!cliente_nome || !veiculo_placa || !problema) {
       return res.status(400).json({ error: "Campos obrigatórios ausentes" });
     }
 
     const statusValido = ["aberto", "em_andamento", "concluido"].includes(status) ? status : "aberto";
 
-    await db.query("INSERT INTO ordens_servico SET ?", {
-      cliente_nome,
-      veiculo_placa: veiculo_placa.toUpperCase(), // Força maiúscula
-      problema,
-      status: statusValido,
-      tecnico_id,
-    });
+    // 🎯 Mudança aqui: Usamos colunas explícitas para evitar erros de mapeamento do driver
+    const query = `
+      INSERT INTO ordens_servico 
+      (cliente_nome, veiculo_placa, problema, status, tecnico_id) 
+      VALUES (?, ?, ?, ?, ?)
+    `;
+    
+    const values = [
+      cliente_nome, 
+      veiculo_placa.toUpperCase(), 
+      problema, 
+      statusValido, 
+      tecnico_id
+    ];
+
+    await db.query(query, values);
 
     res.status(201).send("OS criada com sucesso");
   } catch (error) {
+    console.error("Erro detalhado no MySQL:", error); // Isso vai imprimir o erro real no seu terminal
     res.status(500).json({ error: "Erro ao criar OS", details: error });
   }
 }
+
 
 // Listar OS
 export async function listarOS(req: Request, res: Response) {

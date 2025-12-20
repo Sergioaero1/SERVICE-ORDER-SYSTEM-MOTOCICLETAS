@@ -10,27 +10,55 @@ export default function NewOS() {
   const [placa, setPlaca] = useState("")
   const navigate = useNavigate()
 
-  const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
       const auth = getAuth()
       const user = auth.currentUser
-      if (!user) return alert("Sessão expirada. Faça login novamente.")
+      if (!user) {
+        alert("Você precisa estar logado para criar uma OS")
+        return
+      }
 
+      // 🎯 Garantimos que os dados batem com o que o DB espera
       await api.post("/os", {
         cliente_nome: cliente,
-        veiculo_placa: placa.toUpperCase(),
+        veiculo_placa: placa.toUpperCase(), // Tarefa F: Sempre maiúsculo
         problema: descricao,
-        status: "aberto",
+        status: "aberto", // 🎯 Define o status inicial automático
         tecnico_id: user.uid,
       })
+      
       alert("OS criada com sucesso!")
       navigate("/dashboard")
     } catch (error) {
-      console.error(error)
-      alert("Erro ao criar OS.")
+      console.error("Erro ao criar OS:", error)
+      alert("Erro ao criar OS. Verifique se o servidor backend está ligado.")
     }
   }
+
+
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   try {
+  //     const auth = getAuth()
+  //     const user = auth.currentUser
+  //     if (!user) return alert("Sessão expirada. Faça login novamente.")
+
+  //     await api.post("/os", {
+  //       cliente_nome: cliente,
+  //       veiculo_placa: placa.toUpperCase(),
+  //       problema: descricao,
+  //       status: "aberto",
+  //       tecnico_id: user.uid,
+  //     })
+  //     alert("OS criada com sucesso!")
+  //     navigate("/dashboard")
+  //   } catch (error) {
+  //     console.error(error)
+  //     alert("Erro ao criar OS.")
+  //   }
+  // }
 
   return (
     <div className="min-h-screen bg-gray-100">
