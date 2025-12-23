@@ -1,2 +1,2 @@
 # O.S MOTOCICLETAS
-## React + Typescript + vite
+## React + Typescript + vite + Tailwind v4
