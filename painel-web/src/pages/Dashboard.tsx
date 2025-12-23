@@ -65,7 +65,6 @@ export default function Dashboard() {
       {/* CONTAINER CENTRALIZADO */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8"> 
         
-        HEADER COM LOGOMARCA
         <header className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6">
           <div className="space-y-1">
             <h1 className="text-3xl font-extrabold text-gray-900 flex items-center gap-3 tracking-tight">
@@ -74,7 +73,7 @@ export default function Dashboard() {
             </h1>
             <p className="text-gray-500 font-medium flex items-center gap-2">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              Gestão de Motocicletas | Capitão Sergio
+              Gestão de Motocicletas | Mestre Sergio
             </p>
           </div>
           
