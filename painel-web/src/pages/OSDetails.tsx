@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react'; // Adicionado useRef
 import { useParams, useNavigate } from 'react-router-dom';
+import { useReactToPrint } from 'react-to-print'; // Import de impressão
 import api from '../services/api';
 import Navbar from '../components/NavBar';
 import StatusDropdown from '../components/StatusDropDown';
+import { OSPrintTemplate } from '../components/OSPrintTemplate'; // Import do Template
 
 type StatusBackend = "aberto" | "em_andamento" | "concluido";
 
@@ -19,11 +21,19 @@ interface OSDetailsType {
 export default function OSDetails() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const componentRef = useRef<HTMLDivElement>(null); // Referência para o PDF
+
   const [os, setOs] = useState<OSDetailsType | null>(null);
   const [loading, setLoading] = useState(true);
   const [editCliente, setEditCliente] = useState('');
   const [editPlaca, setEditPlaca] = useState('');
   const [editProblema, setEditProblema] = useState('');
+
+  // Configuração da função de impressão
+  const handlePrint = useReactToPrint({
+    contentRef: componentRef,
+    documentTitle: `OS_${os?.id}_${os?.veiculo_placa}`,
+  });
 
   useEffect(() => {
     const fetchOsDetails = async () => {
@@ -75,15 +85,27 @@ export default function OSDetails() {
     <div className="min-h-screen bg-gray-100">
       <Navbar />
       <div className="p-4 max-w-3xl mx-auto">
+        {/* CABEÇALHO DE AÇÕES */}
         <div className="flex justify-between items-center mb-4">
           <button onClick={() => navigate(-1)} className="text-blue-600 hover:underline font-medium">
             &larr; Voltar
           </button>
-          <button onClick={handleDelete} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
-            Excluir OS
-          </button>
+          
+          <div className="flex gap-2">
+            {/* Botão de Impressão Profissional */}
+            <button 
+              onClick={() => handlePrint()} 
+              className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-black transition shadow-md font-medium flex items-center gap-2"
+            >
+              🖨️ Imprimir PDF
+            </button>
+            <button onClick={handleDelete} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
+              Excluir OS
+            </button>
+          </div>
         </div>
         
+        {/* CARD DE EDIÇÃO (O QUE O TÉCNICO VÊ NO SITE) */}
         <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
           <h2 className="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">Editar Ordem # {os.id}</h2>
           
@@ -114,6 +136,11 @@ export default function OSDetails() {
               Salvar Alterações
             </button>
           </div>
+        </div>
+
+        {/* 🖨️ TEMPLATE DE IMPRESSÃO (INVISÍVEL NA TELA, SÓ SAI NO PDF) */}
+        <div className="hidden">
+           <OSPrintTemplate ref={componentRef} os={os} />
         </div>
       </div>
     </div>

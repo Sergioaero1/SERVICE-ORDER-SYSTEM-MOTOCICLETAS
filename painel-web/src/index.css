@@ -1,9 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* O Tailwind v4 detecta automaticamente seus arquivos .tsx */
+/* Não precisa mais de @tailwind base, components, etc. */
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
 
 body {
   margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  min-height: 100vh;
+  background-color: #f9fafb; /* bg-gray-50 */
 }

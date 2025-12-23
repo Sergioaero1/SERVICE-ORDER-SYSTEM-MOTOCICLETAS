@@ -37,29 +37,6 @@ export default function NewOS() {
     }
   }
 
-
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault()
-  //   try {
-  //     const auth = getAuth()
-  //     const user = auth.currentUser
-  //     if (!user) return alert("Sessão expirada. Faça login novamente.")
-
-  //     await api.post("/os", {
-  //       cliente_nome: cliente,
-  //       veiculo_placa: placa.toUpperCase(),
-  //       problema: descricao,
-  //       status: "aberto",
-  //       tecnico_id: user.uid,
-  //     })
-  //     alert("OS criada com sucesso!")
-  //     navigate("/dashboard")
-  //   } catch (error) {
-  //     console.error(error)
-  //     alert("Erro ao criar OS.")
-  //   }
-  // }
-
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />

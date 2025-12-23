@@ -1,0 +1,41 @@
+
+OS-SYSTEM-MOTOCICLETAS
+
+ │----src/
+ |      ├── config/chavePrivada.json
+ |      ├── controllers/osController.ts
+ |      ├── middleweare/auth.ts
+ |      ├── routes/osRoutes
+ |      ├── types/express.d.ts
+ │      ├── index.ts
+ │              
+ ├── .env
+ ├── .gitignore
+ ├── package-lock.json
+ └── package.json
+ |____tsconfig.json
+
+
+painel-Web
+
+ ├── public/
+ │    ├── header.ico
+ │
+ ├── src/
+ │    ├── components/FilterBar.tsx, NavBar.tsx, OSCard.tsx, OSPrintTemplate.tsx, StatusDropDown.tsx
+ │    ├── pages/Dashboard.tsx, Login.tsx, NewOs.tsx, OSDetails.tsx, Profile.tsx, Register.tsx
+ │    ├── services/api.tsx, firebase.tsx
+ │    ├── App.tsx
+ │    └── index.css
+ │    |── main.tsx
+ ├── .env
+ ├── .gitignore
+ ├── eslint.config.js
+ |__ index.html
+ ├── package-lock.json
+ ├── package.json
+ ├── postcss.config.js
+ ├── tsconfig.app.json
+ ├── tsconfig.json
+ ├── tsconfig.node.json
+ |__ vite.config.ts
