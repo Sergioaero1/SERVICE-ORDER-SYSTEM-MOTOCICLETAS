@@ -73,7 +73,7 @@ export default function Dashboard() {
             </h1>
             <p className="text-gray-500 font-medium flex items-center gap-2">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              Gestão de Motocicletas | Mestre Sergio
+              Gestão de Motocicletas | Mestre Sergioaero
             </p>
           </div>
           

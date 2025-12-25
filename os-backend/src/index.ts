@@ -7,7 +7,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:5173", // URL do seu Vite
+  origin: "*", // URL do seu Vite "http://192.168.1.4:5173"    SE NÃO TIVER INTERNET, MUDAR PARA LOCALLHOST:2173
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
