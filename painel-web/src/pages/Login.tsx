@@ -44,7 +44,8 @@ export default function Login() {
           Entrar
         </button>
 
-        <p className="text-center text-sm text-gray-500 mt-4">
+        {/*jOGUEI ESSE BOTÃO ABAIXO - DE NOVO CADASTRO - NO PERFIL DE MUDANÇA DE LOGIN*/}
+        {/* <p className="text-center text-sm text-gray-500 mt-4">
             Ainda não tem conta?{' '}
             <button
                 type="button"
@@ -53,7 +54,7 @@ export default function Login() {
             >
                 Cadastre-se
             </button>
-        </p>
+        </p> */}
       </form>
     </div>
   )

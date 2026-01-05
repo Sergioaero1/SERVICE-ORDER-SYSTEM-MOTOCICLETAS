@@ -22,7 +22,7 @@ start "PAINEL-WEB" /min cmd /c "npm run dev"
 echo [3/3] Abrindo o sistema no navegador...
 timeout /t 8 /nobreak > nul
 
-:: AJUSTE A PORTA ABAIXO (Mude para 5173 se for Vite ou 3001 se for React comum)
+:: AJUSTE A PORTA ABAIXO (Mude para 5173 se for Vite ou 3001 se for React comum) / http://192.168.1.4:5173 para computer + smartphone via wi-fi
 start http://192.168.1.4:5173
 
 echo ===============================================

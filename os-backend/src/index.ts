@@ -7,7 +7,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: "*", // URL do seu Vite "http://192.168.1.4:5173"    SE NÃO TIVER INTERNET, MUDAR PARA LOCALLHOST:2173
+  origin: "http://192.168.1.4:5173" , // URL do seu Vite / Com "http://192.168.1.4:5173" fica mais seguro mas smartphone não acessa / com "*" para computer + smartphone via wi-fi
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
