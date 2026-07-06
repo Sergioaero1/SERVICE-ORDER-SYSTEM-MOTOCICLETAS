@@ -15,7 +15,6 @@ OS-SYSTEM-MOTOCICLETAS
  └── package.json
  |____tsconfig.json
 
-
 painel-Web
 
  ├── public/
